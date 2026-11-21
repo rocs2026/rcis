@@ -19,7 +19,7 @@ function url(string $path = ''): string
 {
     // rtrim strips trailing "/" from APP_URL so we don't get "//" joins
     $base = rtrim(getenv('APP_URL') ?: '', '/');
-
+    
     // ltrim strips leading "/" from $path for the same reason
     return $base . '/' . ltrim($path, '/');
 }
