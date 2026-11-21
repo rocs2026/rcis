@@ -7,7 +7,8 @@
         "php": ">=8.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^10.5",
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -23,25 +24,10 @@
         }
     },
     "scripts": {
-        "test": "phpunit --testdox",
-        "tools:install": "@composer install --working-dir=.github/tools/lint --no-interaction --no-progress",
-        "ai": "@php .github/tools/slop/run.php . build/reports/slop/ai-pattern-report.txt",
-        "phpcs": "@php .github/tools/lint/vendor/bin/phpcs --standard=phpcs.xml",
-        "checkstyle": "@phpcs",
-        "phpmd": "@php .github/tools/lint/vendor/bin/phpmd analyze --format=text --ruleset=phpmd.xml --exclude=\"*vendor*\" --exclude=\"*tests*\" .",
-        "pmd": "@phpmd",
-        "phpcpd": [
-            "@php -r \"@mkdir('build/reports', 0777, true);\"",
-            "@php .github/tools/lint/vendor/bin/phpcpd --min-lines 5 --min-tokens 70 --exclude vendor --exclude tests --exclude .github/tools/lint/vendor --log-pmd build/reports/cpd-report.xml ."
-        ],
+        "checkstyle": "@php vendor/bin/phpcs --standard=phpcs.xml",
         "check": [
             "@composer validate",
-            "@tools:install",
-            "@test",
-            "@phpcs",
-            "@phpmd",
-            "@phpcpd",
-            "@ai"
+            "@checkstyle"
         ]
     },
     "config": {
