@@ -19,3 +19,6 @@ Thumbs.db
 
 # Generated reports and caches
 /build/
+
+# Lock files — generated locally, never committed
+*.lock
